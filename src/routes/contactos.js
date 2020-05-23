@@ -50,17 +50,13 @@ router.get('/agregarRevista/:id',async(req,res)=>{
 
 
 router.post('/agregarRevistas/:id',async(req,res)=>{
-const {id} = req.params
-//await Contactos.update({_id: id}, req.body);
-
-const contactos = await Contactos.findById({_id:id});
-
-arrayRevistas = contactos.revistas
-arrayRevistas.push(req.body)
-contactos.revistas = arrayRevistas
-await Contactos.update({_id: id}, contactos);
-
-res.send("SE AGREGO REVISTA");
+  const {id} = req.params
+  const contactos = await Contactos.findById({_id:id});
+  arrayRevistas = contactos.revistas
+  arrayRevistas.push(req.body)
+  contactos.revistas = arrayRevistas
+  await Contactos.update({_id: id}, contactos);
+  res.send("SE AGREGO REVISTA");
 
 });
 
