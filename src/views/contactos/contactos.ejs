@@ -1,4 +1,4 @@
-<% include partials/_header %>
+<% include ../partials/_header %>
 
 
 <div class="container">
@@ -95,6 +95,10 @@
             <a href="/editar/<%= contactos[i]._id %>" class="btn btn-info">
               Editar 
             </a>
+          </a>
+          <a href="/agregarRevista/<%= contactos[i]._id %>" class="btn btn-outline-success">
+            Agregar revista 
+          </a>
           </td>
         </tr>
         <% } %>

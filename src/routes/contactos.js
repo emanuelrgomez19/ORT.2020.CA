@@ -5,7 +5,7 @@ const Contactos = require('../model/contactos');
 
 router.get('/contactos', async (req, res) => {
   const contactos = await Contactos.find();
-  res.render('contactos', {
+  res.render('contactos/contactos', {
       contactos
   });
 });
@@ -25,7 +25,7 @@ router.get('/eliminar/:id', async (req,res)=>{
 router.get('/editar/:id',async(req,res)=>{
   const {id} = req.params
  const contactos = await Contactos.findById({_id:id});
-  res.render('contactos_edit',{
+  res.render('contactos/contactos_edit',{
     contactos
   });
 
@@ -37,5 +37,34 @@ router.post('/editar/:id', async (req, res, next) => {
   await Contactos.update({_id: id}, req.body);
   res.redirect('/contactos');
 });
+
+
+router.get('/agregarRevista/:id',async(req,res)=>{
+  const {id} = req.params
+  const contactos = await Contactos.findById({_id:id});
+   res.render('contactos/contactos_agregarRevista',{
+     contactos
+   });
+
+});
+
+
+router.post('/agregarRevistas/:id',async(req,res)=>{
+const {id} = req.params
+//await Contactos.update({_id: id}, req.body);
+
+const contactos = await Contactos.findById({_id:id});
+
+arrayRevistas = contactos.revistas
+arrayRevistas.push(req.body)
+contactos.revistas = arrayRevistas
+await Contactos.update({_id: id}, contactos);
+
+res.send("SE AGREGO REVISTA");
+
+});
+
+
+
 
 module.exports = router;
