@@ -78,13 +78,13 @@
             <td><%= revistas[i].description %></td>
             <td><%= revistas[i]._id %></td>
             <td>
-              <a class="<%= revistas[i].status ? 'btn btn-success' : 'btn btn-dark'%>"
-                href="/turn2/<%= revistas[i]._id %>">Done</a>
+              <a href="/turn2/<%= revistas[i]._id %>" class="btn btn-outline-success">
+                Crear edicion</a>
               <a href="/delete2/<%= revistas[i]._id %>" class="btn btn-danger">
-                Delete
+                Borrar
               </a>
               <a href="/revista_edit/<%= revistas[i]._id %>" class="btn btn-info">
-                Edit
+                Editar 
               </a>
             </td>
           </tr>

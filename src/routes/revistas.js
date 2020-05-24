@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const daoRevistda = require('../dao/dao_revistas')
 const Revistas = require('../model/revistas');
+
+
 
   router.get('/revistas', async (req, res) => {
     const revistas = await Revistas.find();
