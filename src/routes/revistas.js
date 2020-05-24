@@ -4,12 +4,13 @@ const Revistas = require('../model/revistas');
 
   router.get('/revistas', async (req, res) => {
     const revistas = await Revistas.find();
-    res.render('revistas', {
+    res.render('v_revistas/v_revistas', {
         revistas
     });
   });
   
   router.post('/addRevista', async (req, res, next) => {
+    console.log(req.body)
     const revistas = new Revistas(req.body);
     await revistas.save();
     res.redirect('/revistas');

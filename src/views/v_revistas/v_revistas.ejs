@@ -1,0 +1,97 @@
+<% include ../partials/_header %>
+
+<div class="container">
+  <p nav class="navbar navbar-inverse bg-l navbar-static-top">
+  <form class="form-inline navbar-form navbar-right">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+  </p>
+
+  <p>
+  <div class="d-flex flex-grow-1">
+    <a href="/" class="navbar-brand">Revistas</a>
+    <form class="mr-2 my-auto w-100 d-inline-block order-1">
+      <div class="input-group">
+        <input type="text" class="form-control border border-right-0" placeholder="Search...">
+        <span class="input-group-append">
+          <button class="btn btn-outline-light border border-left-0" type="button">
+            <i class="fa fa-search"></i>
+          </button>
+        </span>
+      </div>
+    </form>
+  </div>
+  </nav>
+  </p>
+
+  <div class="row">
+    <!--FORM-->
+
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+
+          <form action="addRevista" method="post">
+            <div class="form-group">
+              <input class="form-control" type="text" name="nombre" placeholder="Titulo" required=true>
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="number" name="codigo" placeholder="Codigo" required=true>
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="number" name="zona" placeholder="Zona" required=true>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" name="description" cols="80" placeholder="Description"></textarea>
+            </div>
+            <button class="btn btn-primary " type="submit">
+              Add
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIST -->
+    <div class="col-md-9">
+      <table class="table table-bordered table-hover table table-sm text-center">
+        <thead class="thead-dark">
+          <tr>
+            <th>N°</th>
+            <th>Nombre</th>
+            <th>Codigo</th>
+            <th>Zona</th>
+            <th>Descripcion</th>
+            <th>id objeto</th>
+            <th>Options</th>
+            <!-- <th>Status</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0; i < revistas.length; i++) { %>
+          <tr>
+            <td><%= i + 1%></td>
+            <td><strong><%= revistas[i].nombre %></strong></td>
+            <td><strong><%= revistas[i].codigo %></strong></td>
+            <td><strong><%= revistas[i].zona %></strong></td>
+            <td><%= revistas[i].description %></td>
+            <td><%= revistas[i]._id %></td>
+            <td>
+              <a class="<%= revistas[i].status ? 'btn btn-success' : 'btn btn-dark'%>"
+                href="/turn2/<%= revistas[i]._id %>">Done</a>
+              <a href="/delete2/<%= revistas[i]._id %>" class="btn btn-danger">
+                Delete
+              </a>
+              <a href="/revista_edit/<%= revistas[i]._id %>" class="btn btn-info">
+                Edit
+              </a>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

@@ -5,7 +5,7 @@ const Contactos = require('../model/contactos');
 
 router.get('/contactos', async (req, res) => {
   const contactos = await Contactos.find();
-  res.render('contactos/contactos', {
+  res.render('v_contactos/v_contactos', {
       contactos
   });
 });
@@ -25,7 +25,7 @@ router.get('/eliminar/:id', async (req,res)=>{
 router.get('/editar/:id',async(req,res)=>{
   const {id} = req.params
  const contactos = await Contactos.findById({_id:id});
-  res.render('contactos/contactos_edit',{
+  res.render('v_contactos/v_contactos_edit',{
     contactos
   });
 
@@ -42,7 +42,7 @@ router.post('/editar/:id', async (req, res, next) => {
 router.get('/agregarRevista/:id',async(req,res)=>{
   const {id} = req.params
   const contactos = await Contactos.findById({_id:id});
-   res.render('contactos/contactos_agregarRevista',{
+   res.render('v_contactos/v_contactos_agregarRevista',{
      contactos
    });
 

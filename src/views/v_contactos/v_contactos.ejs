@@ -1,0 +1,120 @@
+<% include ../partials/_header %>
+
+
+<div class="container">
+    <p nav class="navbar navbar-inverse bg-l navbar-static-top">
+    <form class="form-inline navbar-form navbar-right">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    </p>
+    <p>
+        <div class="d-flex flex-grow-1">
+          <a href="/" class="navbar-brand">Contactos</a>
+          <form class="mr-2 my-auto w-100 d-inline-block order-1">
+            <div class="input-group">
+              <input type="text" class="form-control border border-right-0" placeholder="Search...">
+              <span class="input-group-append">
+                <button class="btn btn-outline-light border border-left-0" type="button">
+                  <i class="fa fa-search"></i>
+                </button>
+              </span>
+            </div>
+          </form>
+        </div>
+        </nav>
+        </p>
+        <div class="row">
+            <!--FORM-->
+        
+            <div class="col-md-3">
+              <div class="card">
+                <div class="card-body">
+        
+                  <form action="addContacto" method="post">
+                    <div class="form-group">
+                      <input class="form-control" type="text" name="nombre" placeholder="Nombre" required=true>
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control" type="text" name="apellido" placeholder="Apellido"required=true>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="number" name="doc" placeholder="Documento"required=true>
+                      </div>
+                      <div class="form-group">
+                        <input class="form-control" type="email" name="mail" placeholder="Mail"required=true>
+                      </div>
+                      <div class="form-group">
+                        <input class="form-control" type="email" name="mail2" placeholder="Mail alternativo">
+                      </div>
+                      <div class="form-group">
+                        <input class="form-control" type="number" name="celular" placeholder="Celular"required=true>
+                      </div>
+                      <div class="form-group">
+                        <input class="form-control" type="number" name="telefono" placeholder="Telefono">
+                      </div>
+
+                    <button class="btn btn-primary " type="submit">
+                         Crear contacto 
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+                     <!-- LIST -->
+          <div class="col-md-9">
+            <table class="table table-bordered table-hover table table-sm text-center">
+            <thead class="thead-dark">
+                 <tr>
+                    <th>N°</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Mail</th>
+                    <th>Mail alter</th>
+                    <th>Celular</th>
+                    <th>Telefono</th>
+                    <th>Options</th>
+          <!-- <th>Status</th> -->
+                </tr>
+            </thead>
+      <tbody>
+        <% for(var i=0; i < contactos.length; i++) { %>
+        <tr>
+          <td><%= i + 1%></td>
+          <td><strong><%= contactos[i].nombre %></strong></td>
+          <td><%= contactos[i].apellido %></td>
+          <td><%= contactos[i].mail %></td>
+          <td><%= contactos[i].mail2 %></td>
+          <td><%= contactos[i].celular %></td> 
+          <td><%= contactos[i].telefono %></td>  
+          
+          <td>
+            <a href="/eliminar/<%= contactos[i]._id %>" class="btn btn-danger" onclick="return confirmar()" >
+              Eliminar 
+            </a>
+            <a href="/editar/<%= contactos[i]._id %>" class="btn btn-info">
+              Editar 
+            </a>
+          </a>
+          <a href="/agregarRevista/<%= contactos[i]._id %>" class="btn btn-outline-success">
+            Agregar revista 
+          </a>
+          </td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<script>
+    function confirmar()
+    {
+        if(confirm("Estas seguro que quieres eliminar este contacto ?"))
+        {
+            return true;
+        }
+        return false;
+    }
+</script>
